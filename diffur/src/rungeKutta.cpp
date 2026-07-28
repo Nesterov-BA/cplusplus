@@ -1,6 +1,4 @@
 #include "rungeKutta.hpp"
-#include <matplot/freestanding/plot.h>
-#include <matplot/matplot.h>
 
 int maxNumberOfCycles = 5;
 bool limitedCycles = true;
@@ -92,8 +90,6 @@ void solutionUpToTimeFinal(double xStart, double yStart,
     y.push_back(yStart);
     file << xStart << "," << yStart << "," << time << endl;
   }
-  matplot::plot(x, y);
-  matplot::save("img/plot.png");
   *xEnd = xStart;
   *yEnd = yStart;
   // printf("Tolerance: %e Error: %e, numOfPoints: %d, globalError: %e,

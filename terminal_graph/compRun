@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+rm -rf obj/*
+{
+    mkdir obj
+} || {
+    echo "obj directory already exists"
+}
+{
+    mkdir bin
+} || {
+    echo "bin directory already exists"
+}
+make clean
+make
+./bin/a.out

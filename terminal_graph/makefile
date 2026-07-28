@@ -25,8 +25,7 @@ $(OBJDIR)/%.d: $(SRCDIR)/%.cpp
 
 # Link Object Files
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ 
-	rm -f $(OBJDIR)/*.o $(OBJDIR)/*.d
+	$(CC) $(CFLAGS) $^ -o $@
 
 # Include Dependencies
 -include $(DEPS)

@@ -1,6 +1,5 @@
 #include "rungeKutta.hpp"
 #include <math.h>
-
 double alpha;
 double dx(double x, double y);
 inline double dy(double x, double y);
