@@ -11,7 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +22,8 @@ class Ui_Widget
 {
 public:
     QPushButton *pushButton;
+    QSlider *horizontalSlider;
+    QLabel *label;
 
     void setupUi(QWidget *Widget)
     {
@@ -28,7 +32,14 @@ public:
         Widget->resize(800, 600);
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(300, 340, 86, 26));
+        pushButton->setGeometry(QRect(100, 480, 86, 26));
+        horizontalSlider = new QSlider(Widget);
+        horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
+        horizontalSlider->setGeometry(QRect(420, 480, 160, 18));
+        horizontalSlider->setOrientation(Qt::Orientation::Horizontal);
+        label = new QLabel(Widget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(470, 500, 61, 61));
 
         retranslateUi(Widget);
 
@@ -38,7 +49,8 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
-        pushButton->setText(QCoreApplication::translate("Widget", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("Widget", "Button", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "TextLabel", nullptr));
     } // retranslateUi
 
 };

@@ -1,6 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include "qobjectdefs.h"
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -9,15 +10,19 @@ class Widget;
 }
 QT_END_NAMESPACE
 
-class Widget : public QWidget
-{
-    Q_OBJECT
+class Widget : public QWidget {
+  Q_OBJECT
 
 public:
-    explicit Widget(QWidget *parent = nullptr);
-    ~Widget() override;
+  explicit Widget(QWidget *parent = nullptr);
+  ~Widget() override;
 
 private:
-    Ui::Widget *ui;
+  Ui::Widget *ui;
+  int count;
+
+private slots:
+  void onButtonClicked();
+  void onSliderValueChanged(int value);
 };
 #endif // WIDGET_H
