@@ -8,18 +8,28 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow *window) {
+void processInput(GLFWwindow *window, float *br, float *xOff, float *yOff) {
   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     glfwSetWindowShouldClose(window, true);
 
-  // if (glfwGetKey(window, GLFW_KEY_1)) {
-  //   glClearColor(0.5f, 0.0f, 0.8f, 1.0f);
-  //   glClear(GL_COLOR_BUFFER_BIT);
-  // }
-  // if (glfwGetKey(window, GLFW_KEY_2)) {
-  //   glClearColor(0.0f, 0.0f, 0.8f, 1.0f);
-  //   glClear(GL_COLOR_BUFFER_BIT);
-  // }
+  if (glfwGetKey(window, GLFW_KEY_1)) {
+    *br += 0.01;
+  }
+  if (glfwGetKey(window, GLFW_KEY_2)) {
+    *br -= 0.01;
+  }
+  if (glfwGetKey(window, GLFW_KEY_W)) {
+    *yOff += 0.01;
+  }
+  if (glfwGetKey(window, GLFW_KEY_S)) {
+    *yOff -= 0.01;
+  }
+  if (glfwGetKey(window, GLFW_KEY_D)) {
+    *xOff += 0.01;
+  }
+  if (glfwGetKey(window, GLFW_KEY_A)) {
+    *xOff -= 0.01;
+  }
 }
 
 int main() {
@@ -61,14 +71,21 @@ int main() {
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
 
+  float br = 0;
+  float xOff = 0;
+  float yOff = 0;
   while (!glfwWindowShouldClose(window)) {
     // input processing
-    processInput(window);
+    processInput(window, &br, &xOff, &yOff);
     // render commands
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    ourShader.setFloat("brightness", br);
+    ourShader.setFloat("xOffset", xOff);
+    ourShader.setFloat("yOffset", yOff);
     ourShader.use();
+
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     // boilerplate
