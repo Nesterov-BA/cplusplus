@@ -24,9 +24,8 @@ void Widget::onButtonClicked() {
 
 void Widget::onSliderValueChanged(int value) {
   // METHOD 1: Use the value passed by the signal (recommended)
-  ui->label->setText(QString::number(value));
-
-  // METHOD 2: Get the value directly from the slider (if you need it later)
-  // int currentValue = m_slider->value();
-  // m_label->setText(QString::number(currentValue));
+  double val = value;
+  val = val * 100 / 99;
+  val /= 10;
+  ui->label->setText(QString::number(val));
 }
